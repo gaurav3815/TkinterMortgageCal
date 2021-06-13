@@ -4,13 +4,80 @@ from tkinter.ttk import *
 
 window = tk.Tk()
 window.title("Mortgage Calculator")
-window.geometry("350x600")
+window.geometry("350x900")
 
 Title = tk.Label(window,text="Calculate Mortgage", font=("Arial", 17), foreground="red").pack(padx=10, pady=10)
 
 counter = 0
+counter3 = 0
+counter4 = 0
+def ShowBuyToRentYesCal():
+    global counter4
+    global ProfitsA
+    counter4 += 1
+    if counter4 >= 2:
+        ProfitsA.destroy()
+        counter4 -= int(1)
+    else:
+        pass
+    Profits = int(TenantsRent.get()) - int(BankIntrestCal4)
+    print(BankIntrestCal4)
+    ProfitsSet.set(Profits)
+    ProfitsA = Label(window, text="", textvariable=ProfitsSet, font=("Arial", 12))
+    ProfitsA.pack(pady=5)
+
+def ShowBuyToRentYes():
+    global TenantsRent
+    global counter3
+    global BigMulli
+    global TrnantsRentTitle
+    global TenantsRent
+    global CF
+    counter3 += 1
+    if counter3 >= 2:
+        BigMulli.destroy()
+        TrnantsRentTitle.destroy()
+        TenantsRent.destroy()
+        CF.destroy()
+        # ProfitsA.destroy()
+        counter3 -= int(1)
+    else:
+        pass
+    BigMulli = Label(window, text="Big Mulli!", font=("Arial", 12), foreground="red")
+    BigMulli.pack()
+    TrnantsRentTitle = tk.Label(window, text="Tenants Rent", font=("Arial", 12))
+    TrnantsRentTitle.pack(padx=10, pady=10)
+    TenantsRent = tk.Entry(window)
+    TenantsRent.pack()
+    CF = tk.Button(window, text='Calculate CashFlow', command=ShowBuyToRentYesCal)
+    CF.pack()
+    print(TenantsRent.get())
+
+def ShowBuyToRentNo():
+    Label(window, text="Home Sweet Home!", font=("Arial", 12), foreground="red").pack()
+
+counter2 = 0
+def ShowBuyToRent():
+    global counter2
+    print(counter2)
+    Title2 = tk.Label(window, text="Buy To Rent?", font=("Arial", 17), foreground="red")
+    Title2.pack(padx=10, pady=10)
+    YesButton = tk.Button(window, text='Yes', command=ShowBuyToRentYes)
+    NoButton = tk.Button(window, text='No', command=ShowBuyToRentNo)
+    YesButton.pack()
+    NoButton.pack()
+    counter2 += 1
+    if counter2 >= 2:
+        Title2.destroy()
+        YesButton.destroy()
+        NoButton.destroy()
+        counter2 -= int(1)
+    else:
+        pass
+
 def show_entry_fields():
     global counter
+    global BankIntrestCal4
     counterCalSet.set(counter)
     DepositCal = int(Deposit.get())/100*int(HousePrice.get())
     DepositCalSet.set(DepositCal)
@@ -42,7 +109,7 @@ def show_entry_fields():
     OMA = Label(window, text="", textvariable=BankIntrestCal4Set, font=("Arial", 12))
     OMA.pack(pady=5)
     counter += 1
-    if counter == 2:
+    if counter >= 2:
         TD.destroy()
         TDA.destroy()
         M.destroy()
@@ -52,6 +119,7 @@ def show_entry_fields():
         counter -= int(1)
     else:
         pass
+    ShowBuyToRent()
 
 DepositCalSet = StringVar()
 MortgageCalSet = StringVar()
@@ -59,6 +127,7 @@ counterCalSet = StringVar()
 NumOfYearsCalSet = StringVar()
 BankIntrestCal4Set = StringVar()
 TotalMortageRepaySet = StringVar()
+ProfitsSet = StringVar()
 
 tk.Label(window, text="House Price (£)", font=("Arial", 12)).pack(padx=10, pady=10)
 HousePrice = tk.Entry(window)

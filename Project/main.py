@@ -14,17 +14,31 @@ counter4 = 0
 def ShowBuyToRentYesCal():
     global counter4
     global ProfitsA
+    global ProfitsB
+    global MCF
+    global YCF
     counter4 += 1
     if counter4 >= 2:
         ProfitsA.destroy()
+        ProfitsB.destroy()
+        MCF.destroy()
+        YCF.destroy()
         counter4 -= int(1)
     else:
         pass
-    Profits = int(TenantsRent.get()) - int(BankIntrestCal4)
-    print(BankIntrestCal4)
-    ProfitsSet.set(Profits)
-    ProfitsA = Label(window, text="", textvariable=ProfitsSet, font=("Arial", 12))
+    ProfitsMonthly = int(TenantsRent.get()) - int(BankIntrestCal4)
+    ProfitsMonthlySet.set(ProfitsMonthly)
+    ProfitsYearly = int(ProfitsMonthly) * 12
+    ProfitsYearlySet.set(ProfitsYearly)
+
+    MCF = Label(window, text="| Monthly CashFlow (£) |", font=("Arial", 12), foreground="red")
+    MCF.pack(pady=5)
+    ProfitsA = Label(window, text="", textvariable=ProfitsMonthlySet, font=("Arial", 12))
     ProfitsA.pack(pady=5)
+    YCF = Label(window, text="| Yearly CashFlow (£) |", font=("Arial", 12), foreground="red")
+    YCF.pack(pady=5)
+    ProfitsB = Label(window, text="", textvariable=ProfitsYearlySet, font=("Arial", 12))
+    ProfitsB.pack(pady=5)
 
 def ShowBuyToRentYes():
     global TenantsRent
@@ -39,7 +53,7 @@ def ShowBuyToRentYes():
         TrnantsRentTitle.destroy()
         TenantsRent.destroy()
         CF.destroy()
-        # ProfitsA.destroy()
+        ProfitsA.destroy()
         counter3 -= int(1)
     else:
         pass
@@ -127,7 +141,8 @@ counterCalSet = StringVar()
 NumOfYearsCalSet = StringVar()
 BankIntrestCal4Set = StringVar()
 TotalMortageRepaySet = StringVar()
-ProfitsSet = StringVar()
+ProfitsMonthlySet = StringVar()
+ProfitsYearlySet = StringVar()
 
 tk.Label(window, text="House Price (£)", font=("Arial", 12)).pack(padx=10, pady=10)
 HousePrice = tk.Entry(window)

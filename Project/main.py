@@ -18,6 +18,7 @@ def ShowBuyToRentYesCal():
     global MCF
     global YCF
     counter4 += 1
+    print(counter4, "y")
     if counter4 >= 2:
         ProfitsA.destroy()
         ProfitsB.destroy()
@@ -48,13 +49,18 @@ def ShowBuyToRentYes():
     global TenantsRent
     global CF
     counter3 += 1
+    print(counter3)
     if counter3 >= 2:
         BigMulli.destroy()
         TrnantsRentTitle.destroy()
         TenantsRent.destroy()
         CF.destroy()
-        ProfitsA.destroy()
         counter3 -= int(1)
+        if counter4 >= 1:
+            ProfitsA.destroy()
+            ProfitsB.destroy()
+            MCF.destroy()
+            YCF.destroy()
     else:
         pass
     BigMulli = Label(window, text="Big Mulli!", font=("Arial", 12), foreground="red")
@@ -69,6 +75,8 @@ def ShowBuyToRentYes():
 
 def ShowBuyToRentNo():
     Label(window, text="Home Sweet Home!", font=("Arial", 12), foreground="red").pack()
+
+
 
 counter2 = 0
 def ShowBuyToRent():

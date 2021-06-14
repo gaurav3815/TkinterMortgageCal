@@ -11,6 +11,8 @@ Title = tk.Label(window,text="Calculate Mortgage", font=("Arial", 17), foregroun
 counter = 0
 counter3 = 0
 counter4 = 0
+counter5 = 0
+
 def ShowBuyToRentYesCal():
     global counter4
     global ProfitsA
@@ -18,7 +20,6 @@ def ShowBuyToRentYesCal():
     global MCF
     global YCF
     counter4 += 1
-    print(counter4, "y")
     if counter4 >= 2:
         ProfitsA.destroy()
         ProfitsB.destroy()
@@ -44,12 +45,13 @@ def ShowBuyToRentYesCal():
 def ShowBuyToRentYes():
     global TenantsRent
     global counter3
+    global counter5
     global BigMulli
     global TrnantsRentTitle
     global TenantsRent
     global CF
+    global HSH
     counter3 += 1
-    print(counter3)
     if counter3 >= 2:
         BigMulli.destroy()
         TrnantsRentTitle.destroy()
@@ -63,6 +65,7 @@ def ShowBuyToRentYes():
             YCF.destroy()
     else:
         pass
+    
     BigMulli = Label(window, text="Big Mulli!", font=("Arial", 12), foreground="red")
     BigMulli.pack()
     TrnantsRentTitle = tk.Label(window, text="Tenants Rent", font=("Arial", 12))
@@ -74,8 +77,26 @@ def ShowBuyToRentYes():
     print(TenantsRent.get())
 
 def ShowBuyToRentNo():
-    Label(window, text="Home Sweet Home!", font=("Arial", 12), foreground="red").pack()
-
+    global counter5
+    global HSH
+    HSH = Label(window, text="Home Sweet Home!", font=("Arial", 12), foreground="red")
+    HSH.pack()
+    counter5 += 1
+    if counter5 >= 2:
+        HSH.destroy()
+        counter5 -= 1
+    if counter3 >= 1:
+        BigMulli.destroy()
+        TrnantsRentTitle.destroy()
+        TenantsRent.destroy()
+        CF.destroy()
+        if counter4 >= 1:
+            ProfitsA.destroy()
+            ProfitsB.destroy()
+            MCF.destroy()
+            YCF.destroy()
+    else:
+        pass
 
 
 counter2 = 0

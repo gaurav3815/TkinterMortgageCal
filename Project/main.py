@@ -63,9 +63,11 @@ def ShowBuyToRentYes():
             ProfitsB.destroy()
             MCF.destroy()
             YCF.destroy()
+    if counter5 >= 1:
+        HSH.destroy()
     else:
         pass
-    
+
     BigMulli = Label(window, text="Big Mulli!", font=("Arial", 12), foreground="red")
     BigMulli.pack()
     TrnantsRentTitle = tk.Label(window, text="Tenants Rent", font=("Arial", 12))
@@ -79,8 +81,6 @@ def ShowBuyToRentYes():
 def ShowBuyToRentNo():
     global counter5
     global HSH
-    HSH = Label(window, text="Home Sweet Home!", font=("Arial", 12), foreground="red")
-    HSH.pack()
     counter5 += 1
     if counter5 >= 2:
         HSH.destroy()
@@ -98,7 +98,8 @@ def ShowBuyToRentNo():
     else:
         pass
 
-
+    HSH = Label(window, text="Home Sweet Home!", font=("Arial", 12), foreground="red")
+    HSH.pack()
 counter2 = 0
 def ShowBuyToRent():
     global counter2
